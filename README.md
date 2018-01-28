@@ -56,6 +56,9 @@ Now that we have our runtime dependencies installed and configured, clone this r
 
     # Clone the project
     $ git clone https://github.com/huschlen/Slack-Calc-Bot.git
+    
+Modify slackBotToken in Slack-Calc-Bot/src/main/resources/application.properties and build.
+
     # Build
     $ gradle build
 
