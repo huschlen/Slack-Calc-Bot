@@ -65,4 +65,4 @@ bin/*
 /bin/
 
 # Files that has API keys
-*/application.properties
+*.properties
