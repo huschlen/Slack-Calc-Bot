@@ -45,7 +45,7 @@ Run the following.  The important thing to note are the Gradle version and the J
     Groovy:       2.4.4
     Ant:          Apache Ant(TM) version 1.9.6 compiled on June 29 2015
     JVM:          1.8.0_121 (Oracle Corporation 25.121-b13)
-    OS:           Windows 7 6.1 amd64
+    OS:           Windows 10 10.0 amd64
     
 ## 2. Creat a custom bot
 Create a custom bot with name "calcbot" at [Slack Bot Creation Site](https://my.slack.com/services/new/bot).
