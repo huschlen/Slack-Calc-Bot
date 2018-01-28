@@ -53,8 +53,11 @@ public class SlackCalcBot extends Bot {
     @Controller(events = {EventType.DIRECT_MENTION, EventType.DIRECT_MESSAGE})
     public void onReceiveDM(WebSocketSession session, Event event) {
         log.info("Event Received: {}", event.getType());
-        String arithmeticExpressionString = removeSpecialChars(removeMentionedNames(event.getText()));
-        if( hasAnOperator(arithmeticExpressionString) &&
+        String msgWithoutMentionedNames = removeMentionedNames(event.getText());
+        boolean msgHasBackslashes = hasBackslashes(msgWithoutMentionedNames);
+        String arithmeticExpressionString = removeSpecialChars(msgWithoutMentionedNames);
+        if( !msgHasBackslashes &&
+            hasAnOperator(arithmeticExpressionString) &&
             isValidExpression(arithmeticExpressionString) ) {
             reply(session, event, new Message("It is " + expression.eval(arithmeticExpressionString)));
         }
@@ -70,6 +73,21 @@ public class SlackCalcBot extends Bot {
      */
     private static String removeMentionedNames(String msg) {
         return msg.replaceAll("[<]{1}[@]{1}([\\d\\D]{9})[>]{1}", "");
+    }
+    
+    /**
+     * Utility function to check if the message has a backslash
+     * @param msg
+     * @return true if the message has a backslash
+     */
+    private static boolean hasBackslashes(String msg) {
+        char[] charArray = msg.toCharArray();
+        for(char ch: charArray) {
+            if(ch == '\\') {
+                return true;
+            }
+        }
+        return false;
     }
     
     /**
