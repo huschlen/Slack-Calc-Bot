@@ -62,3 +62,7 @@ build/*
 # Binary directory
 bin/*
 /build/
+/bin/
+
+# Files that has API keys
+*/application.properties
